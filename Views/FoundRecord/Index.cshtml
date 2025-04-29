@@ -1,0 +1,59 @@
+@model IEnumerable<LAFMS.Models.FoundRecord>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FoundDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClaimDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Claimant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Finder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoundDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClaimDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Claimant.ClaimantId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Finder.FinderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item.ItemId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RecordId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RecordId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RecordId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
